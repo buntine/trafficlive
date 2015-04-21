@@ -1,4 +1,4 @@
-e = s.get_employees(import httplib, urllib, json, base64
+import httplib, urllib, json, base64
 
 class Server:
     """Wraps request/response."""
@@ -11,16 +11,16 @@ class Server:
         self.token = token
 
     def get_employees(self):
-        return True
+        self.__request(path="staff/employee")
 
     def __request(self, method="GET", path="", params={}, headers={}):
         """Requests a resource from the server and returns the full response."""
-        conn         = httplib.HTTPSConnection(DOMAIN_NAME)
-        full_path    = "/".join([BASE_URL, path])
+        conn         = httplib.HTTPSConnection(self.DOMAIN_NAME)
+        full_path    = "/".join([self.BASE_URL, path])
         full_params  = urllib.urlencode(params)
         full_headers = {
           "Authorization": self.__encode_credentials(),
-          "X-Target-URI": DOMAIN_NAME,
+          "X-Target-URI": self.DOMAIN_NAME,
           "Accept": "application/json",
           "Connection": "Keep-Alive"}
         full_headers.update(headers)
@@ -38,4 +38,4 @@ class Server:
 
     def __encode_credentials(self):
         """BASE64 encodes authentication details for delivery over HTTP."""
-        base64.b64encode("Basic %s:%s" % (self.email, self.token))
+        return base64.b64encode("Basic %s:%s" % (self.email, self.token))
