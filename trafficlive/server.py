@@ -1,4 +1,4 @@
-import httplib, urllib, json, base64
+e = s.get_employees(import httplib, urllib, json, base64
 
 class Server:
     """Wraps request/response."""
@@ -10,7 +10,7 @@ class Server:
         self.email = email
         self.token = token
 
-    def get_all_employess(self):
+    def get_employees(self):
         return True
 
     def __request(self, method="GET", path="", params={}, headers={}):
@@ -26,10 +26,15 @@ class Server:
         full_headers.update(headers)
 
         conn.request(method, full_path, full_params, full_headers)
-        response = conn.getresponse()
+        response = self.__wrap_response(conn.getresponse())
         conn.close()
 
         return response
+
+    def __wrap_response(self, response):
+        """Wraps an API response in a data structure that's a little nicer to work with."""
+        return {"status": response.status,
+                "body": json.loads(response.read())}
 
     def __encode_credentials(self):
         """BASE64 encodes authentication details for delivery over HTTP."""
