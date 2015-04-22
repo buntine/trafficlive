@@ -26,10 +26,16 @@ class Server:
         full_headers.update(headers)
 
         conn.request(method, full_path, full_params, full_headers)
-        response = self.__wrap_response(conn.getresponse())
-        conn.close()
 
-        return response
+        try:
+            response = conn.getresponse()
+
+            if response.status != 200:
+                raise RuntimeError("Received HTTP %s" % (response.status))
+        finally:
+            conn.close()
+
+        return self.__wrap_response(response)
 
     def __wrap_response(self, response):
         """Wraps an API response in a data structure that's a little nicer to work with."""
@@ -38,4 +44,4 @@ class Server:
 
     def __encode_credentials(self):
         """BASE64 encodes authentication details for delivery over HTTP."""
-        return base64.b64encode("Basic %s:%s" % (self.email, self.token))
+        return "Basic " + base64.b64encode("%s:%s" % (self.email, self.token))

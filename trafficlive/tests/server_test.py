@@ -8,8 +8,8 @@ class TestServer(TestCase):
         s = tls.Server("bunts@bunts.com", "abcd1234")
         self.assertTrue(s.email == "bunts@bunts.com")
 
-    def test_get_employees_works(self):
+    def test_wrong_credentials(self):
         s = tls.Server("bunts@bunts.com", "abcd1234")
-        e = s.get_employees()
 
-        self.assertTrue(e["status"] == 200)
+        with self.assertRaises(RuntimeError):
+            s.get_employees()
