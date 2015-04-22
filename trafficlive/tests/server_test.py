@@ -7,13 +7,20 @@ import sys
 # email@address,APITOKEN
 
 class TestServer(TestCase):
-    def credentials(self):
+    def credentials(self, page_size=2):
         details = open("auth", "r")
-        return details.read().rstrip("\n").split(",")
+        creds   = details.read().rstrip("\n").split(",")
+
+        creds.append(page_size)
+        details.close()
+
+        return creds
 
     def test_has_attributes(self):
-        s = tls.Server("bunts@bunts.com", "abcd1234")
+        s = tls.Server("bunts@bunts.com", "abcd1234", 2)
         self.assertTrue(s.email == "bunts@bunts.com")
+        self.assertTrue(s.token == "abcd1234")
+        self.assertTrue(s.page_size == 2)
 
     def test_wrong_credentials(self):
         s = tls.Server("bunts@bunts.com", "abcd1234")
@@ -48,4 +55,4 @@ class TestServer(TestCase):
 
         self.assertTrue(e["status"] == 200)
         self.assertTrue(len(b["resultList"]) > 1)
-        self.assertTrue(len(b["resultList"][0]["userName"]) != None)
+        self.assertTrue(len(b["resultList"][0]["name"]) != None)

@@ -17,7 +17,7 @@ class Server:
     def get_employee(self, eid):
         return self.__request(path="staff/employee/%d" % (eid))
 
-    def get_clients(self, page=1)
+    def get_clients(self, page=1):
         return self.__request(path="crm/client", params={"currentPage": page})
 
     def __request(self, method="GET", path="", params={}, headers={}):
