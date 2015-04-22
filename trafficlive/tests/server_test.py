@@ -39,3 +39,13 @@ class TestServer(TestCase):
 
         self.assertTrue(e["status"] == 200)
         self.assertTrue(b["id"] == 39178)
+
+    def test_get_clients(self):
+        c = self.credentials()
+        s = tls.Server(*c)
+        e = s.get_clients()
+        b = e["body"]
+
+        self.assertTrue(e["status"] == 200)
+        self.assertTrue(len(b["resultList"]) > 1)
+        self.assertTrue(len(b["resultList"][0]["userName"]) != None)
