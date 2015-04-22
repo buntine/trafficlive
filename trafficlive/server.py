@@ -20,6 +20,19 @@ class Server:
     def get_clients(self, page=1):
         return self.__request(path="crm/client", params={"currentPage": page})
 
+    def get_jobs(self, page=1):
+        return self.__request(path="job", params={"currentPage": page})
+
+    def get_job(self, jid):
+        return self.__request(path="job/%d" % (jid))
+
+    def get_job_details(self, page=1):
+        return self.__request(path="jobdetail", params={"currentPage": page})
+
+    def get_job_detail(self, jdid):
+        return self.__request(path="jobdetail/%d" % (jdid))
+
+
     def __request(self, method="GET", path="", params={}, headers={}):
         """Requests a resource from the server and returns the full response."""
         conn         = httplib.HTTPSConnection(self.DOMAIN_NAME)
