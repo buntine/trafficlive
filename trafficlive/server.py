@@ -13,6 +13,9 @@ class Server:
     def get_employees(self):
         return self.__request(path="staff/employee")
 
+    def get_employee(self, eid):
+        return self.__request(path="staff/employee/%d" % (eid))
+
     def __request(self, method="GET", path="", params={}, headers={}):
         """Requests a resource from the server and returns the full response."""
         conn         = httplib.HTTPSConnection(self.DOMAIN_NAME)
