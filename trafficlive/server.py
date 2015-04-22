@@ -11,7 +11,7 @@ class Server:
         self.token = token
 
     def get_employees(self):
-        self.__request(path="staff/employee")
+        return self.__request(path="staff/employee")
 
     def __request(self, method="GET", path="", params={}, headers={}):
         """Requests a resource from the server and returns the full response."""
@@ -20,7 +20,8 @@ class Server:
         full_params  = urllib.urlencode(params)
         full_headers = {
           "Authorization": self.__encode_credentials(),
-          "X-Target-URI": self.DOMAIN_NAME,
+          "Host": self.DOMAIN_NAME,
+          "X-Target-URI": "https://" + self.DOMAIN_NAME,
           "Accept": "application/json",
           "Connection": "Keep-Alive"}
         full_headers.update(headers)
@@ -31,11 +32,13 @@ class Server:
             response = conn.getresponse()
 
             if response.status != 200:
-                raise RuntimeError("Received HTTP %s" % (response.status))
+                raise RuntimeError("Received HTTP: %s %s" % (response.status, response.reason))
+
+            response = self.__wrap_response(response)
         finally:
             conn.close()
 
-        return self.__wrap_response(response)
+        return response
 
     def __wrap_response(self, response):
         """Wraps an API response in a data structure that's a little nicer to work with."""

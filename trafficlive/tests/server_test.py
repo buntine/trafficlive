@@ -9,7 +9,7 @@ import sys
 class TestServer(TestCase):
     def credentials(self):
         details = open("auth", "r")
-        return details.read().split(",")
+        return details.read().rstrip("\n").split(",")
 
     def test_has_attributes(self):
         s = tls.Server("bunts@bunts.com", "abcd1234")
@@ -26,4 +26,4 @@ class TestServer(TestCase):
         s = tls.Server(*c)
         e = s.get_employees()
 
-        assertTrue(e["status"] == 200)
+        self.assertTrue(e["status"] == 200)
