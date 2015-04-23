@@ -56,3 +56,32 @@ class TestServer(TestCase):
         self.assertTrue(e["status"] == 200)
         self.assertTrue(len(b["resultList"]) > 1)
         self.assertTrue(len(b["resultList"][0]["name"]) != None)
+
+    def test_get_jobs(self):
+        c = self.credentials()
+        s = tls.Server(*c)
+        e = s.get_jobs()
+        b = e["body"]
+
+        self.assertTrue(e["status"] == 200)
+        self.assertTrue(len(b["resultList"]) > 1)
+        self.assertTrue(len(b["resultList"][0]["jobNumber"]) != None)
+
+    def test_get_job(self):
+        c = self.credentials()
+        s = tls.Server(*c)
+        e = s.get_job(905285)
+        b = e["body"]
+
+        self.assertTrue(e["status"] == 200)
+        self.assertTrue(b["id"] == 905285)
+
+    def test_get_job_details(self):
+        c = self.credentials()
+        s = tls.Server(*c)
+        e = s.get_job_details()
+        b = e["body"]
+
+        self.assertTrue(e["status"] == 200)
+        self.assertTrue(len(b["resultList"]) > 1)
+        self.assertTrue(len(b["resultList"][0]["name"]) != None)

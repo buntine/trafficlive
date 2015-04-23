@@ -32,7 +32,6 @@ class Server:
     def get_job_detail(self, jdid):
         return self.__request(path="jobdetail/%d" % (jdid))
 
-
     def __request(self, method="GET", path="", params={}, headers={}):
         """Requests a resource from the server and returns the full response."""
         conn         = httplib.HTTPSConnection(self.DOMAIN_NAME)
