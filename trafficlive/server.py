@@ -42,6 +42,9 @@ class Server:
 
         return self.__request(path="timeentries", query=query)
 
+    def add_time_entry(employee_id=None, start_time=None, comment="", job_id=None, job_task_id=None, billable=False, minutes=0):
+        pass
+
     def get_job_task_allocations(self, employee_id, page=1):
         path = "staff/employee/%s/jobtaskallocations" % (str(employee_id))
         return self.__request(path=path, query={"currentPage": page})
