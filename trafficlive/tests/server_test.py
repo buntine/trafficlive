@@ -1,21 +1,22 @@
 from unittest import TestCase
 import trafficlive.traffic_live as tl
 import datetime as dt
-import sys
+import sys, os, yaml
 
-# You should have a file called ./auth in the root directory of this repo of the format:
-#
-# email@address,APITOKEN
+# ACHTUNG!!
+# You should copy/paste trafficlive/tests/data.yml.example to traffilive/tests/data.yml and fill
+# out with real data for these tests to run successfully.
 
 class TestServer(TestCase):
     def credentials(self, page_size=2):
-        details = open("auth", "r")
-        creds   = details.read().rstrip("\n").split(",")
+        data = open(os.path.join("trafficlive", "tests", "data.yml"), "r")
 
-        creds.append(page_size)
-        details.close()
+        parsed = yaml.load(data)
+        parsed["page_size"] = page_size
 
-        return creds
+        data.close()
+
+        return parsed
 
     def test_has_attributes(self):
         s = tl.TrafficLive("bunts@bunts.com", "abcd1234", 2)

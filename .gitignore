@@ -3,4 +3,4 @@
 /*.egg-info
 *.swp
 *.swo
-auth
+trafficlive/tests/data.yml

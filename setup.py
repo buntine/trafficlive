@@ -1,7 +1,7 @@
 from setuptools import setup
 
 setup(name='trafficlive',
-      version='0.0.1',
+      version='0.0.2',
       description='A wrapper of the TrafficLive API',
       url='http://github.com/buntine/trafficlive',
       author='Andrew Buntine',
