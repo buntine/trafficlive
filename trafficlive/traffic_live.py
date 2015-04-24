@@ -1,7 +1,7 @@
 import trafficlive.server as tls
 
 class TrafficLive(tls.Server):
-    """."""
+    """Defines all public wrapper functions."""
 
     def get_employees(self, page=1):
         return self._request(path="staff/employee", query={"currentPage": page})
@@ -35,7 +35,10 @@ class TrafficLive(tls.Server):
         return self._request(path="timeentries", query=query)
 
     def add_time_entry(employee_id=None, start_time=None, comment="", job_id=None, job_task_id=None, billable=False, minutes=0):
-        pass
+        body    = {}
+        headers = {"Content-Type": "application/json"}
+
+        return self._request(path="timeentries", method="PUT", body=body, headers=headers)
 
     def get_job_task_allocations(self, employee_id, page=1):
         path = "staff/employee/%s/jobtaskallocations" % (str(employee_id))
