@@ -43,11 +43,11 @@ class TestServer(TestCase):
 #    def test_get_employee(self):
 #        c = self.credentials()
 #        s = tl.TrafficLive(*c)
-#        e = s.get_employee(39178)
+#        e = s.get_employee(c["employee_id"])
 #        b = e["body"]
 #
 #        self.assertTrue(e["status"] == 200)
-#        self.assertTrue(b["id"] == 39178)
+#        self.assertTrue(b["id"] == c["employee_id"])
 #
 #    def test_get_clients(self):
 #        c = self.credentials()
@@ -72,11 +72,11 @@ class TestServer(TestCase):
 #    def test_get_job(self):
 #        c = self.credentials()
 #        s = tl.TrafficLive(*c)
-#        e = s.get_job(905285)
+#        e = s.get_job(c["job_id"])
 #        b = e["body"]
 #
 #        self.assertTrue(e["status"] == 200)
-#        self.assertTrue(b["id"] == 905285)
+#        self.assertTrue(b["id"] == c["job_id"])
 #
 #    def test_get_job_details(self):
 #        c = self.credentials()
@@ -95,7 +95,7 @@ class TestServer(TestCase):
 #        sd = dt.date.today() - y - y
 #        sd = sd.strftime("%Y-%m-%d")
 #        ed = (dt.date.today() - y).strftime("%Y-%m-%d")
-#        te = s.get_time_entries(sd, ed, 39178)
+#        te = s.get_time_entries(sd, ed, c["employee_id"])
 #        b = te["body"]
 #
 #        self.assertTrue(te["status"] == 200)
@@ -107,7 +107,7 @@ class TestServer(TestCase):
 #        s = tl.TrafficLive(*c)
 #        td = dt.timedelta(minutes=120)
 #        st = td.datetime.now() - td
-#        te = s.add_time_entry(employee_id=39178,
+#        te = s.add_time_entry(employee_id=c["employee_id"],
 #               start_time=st,
 #               comment="This is a test",
 #               job_id=111,
@@ -122,7 +122,7 @@ class TestServer(TestCase):
 #    def test_get_job_task_allocations(self):
 #        c = self.credentials()
 #        s = tl.TrafficLive(*c)
-#        e = s.get_job_task_allocations(39178)
+#        e = s.get_job_task_allocations(c["employee_id"])
 #        b = e["body"]
 #
 #        self.assertTrue(e["status"] == 200)
@@ -132,9 +132,9 @@ class TestServer(TestCase):
 #    def test_get_calendar_block_allocations(self):
 #        c = self.credentials()
 #        s = tl.TrafficLive(*c)
-#        e = s.get_calendar_block_allocations(39178)
+#        e = s.get_calendar_block_allocations(c["employee_id"])
 #        b = e["body"]
 #
 #        self.assertTrue(e["status"] == 200)
 #        self.assertTrue(len(b["resultList"]) > 1)
-#        self.assertTrue(b["resultList"][0]["trafficEmployeeId"] != None)
+#        self.assertTrue(b["resultList"][0]["trafficEmployeeId"] == c["employee_id"])
