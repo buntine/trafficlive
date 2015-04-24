@@ -110,3 +110,13 @@ class TestServer(TestCase):
         self.assertTrue(e["status"] == 200)
         self.assertTrue(len(b["resultList"]) > 1)
         self.assertTrue(b["resultList"][0]["taskDescription"] != None)
+
+    def test_get_calendar_block_allocations(self):
+        c = self.credentials()
+        s = tls.Server(*c)
+        e = s.get_calendar_block_allocations(39178)
+        b = e["body"]
+
+        self.assertTrue(e["status"] == 200)
+        self.assertTrue(len(b["resultList"]) > 1)
+        self.assertTrue(b["resultList"][0]["trafficEmployeeId"] != None)

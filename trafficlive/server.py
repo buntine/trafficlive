@@ -46,6 +46,10 @@ class Server:
         path = "staff/employee/%s/jobtaskallocations" % (str(employee_id))
         return self.__request(path=path, query={"currentPage": page})
 
+    def get_calendar_block_allocations(self, employee_id, page=1):
+        path = "staff/employee/%s/calendarblockallocations" % (str(employee_id))
+        return self.__request(path=path, query={"currentPage": page})
+
     def __request(self, method="GET", path="", body="", query={}, headers={}):
         """Requests a resource from the server and returns the full response."""
         conn         = httplib.HTTPSConnection(self.DOMAIN_NAME)
