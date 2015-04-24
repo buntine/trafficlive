@@ -42,11 +42,15 @@ class Server:
 
         return self.__request(path="timeentries", query=query)
 
+    def get_job_task_allocations(self, employee_id, page=1):
+        path = "staff/employee/%s/jobtaskallocations" % (str(employee_id))
+        return self.__request(path=path, query={"currentPage": page})
+
     def __request(self, method="GET", path="", body="", query={}, headers={}):
         """Requests a resource from the server and returns the full response."""
         conn         = httplib.HTTPSConnection(self.DOMAIN_NAME)
         full_path    = "/".join([self.BASE_URL, path])
-        full_query  = {"windowSize": self.page_size}
+        full_query   = {"windowSize": self.page_size}
         full_headers = {
           "Authorization": self.__encode_credentials(),
           "Host": self.DOMAIN_NAME,

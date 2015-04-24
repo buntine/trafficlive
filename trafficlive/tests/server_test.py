@@ -37,7 +37,7 @@ class TestServer(TestCase):
 #
 #        self.assertTrue(e["status"] == 200)
 #        self.assertTrue(len(b["resultList"]) > 1)
-#        self.assertTrue(len(b["resultList"][0]["userName"]) != None)
+#        self.assertTrue(b["resultList"][0]["userName"] != None)
 #
 #    def test_get_employee(self):
 #        c = self.credentials()
@@ -56,7 +56,7 @@ class TestServer(TestCase):
 #
 #        self.assertTrue(e["status"] == 200)
 #        self.assertTrue(len(b["resultList"]) > 1)
-#        self.assertTrue(len(b["resultList"][0]["name"]) != None)
+#        self.assertTrue(b["resultList"][0]["name"] != None)
 #
 #    def test_get_jobs(self):
 #        c = self.credentials()
@@ -66,7 +66,7 @@ class TestServer(TestCase):
 #
 #        self.assertTrue(e["status"] == 200)
 #        self.assertTrue(len(b["resultList"]) > 1)
-#        self.assertTrue(len(b["resultList"][0]["jobNumber"]) != None)
+#        self.assertTrue(b["resultList"][0]["jobNumber"] != None)
 #
 #    def test_get_job(self):
 #        c = self.credentials()
@@ -78,22 +78,35 @@ class TestServer(TestCase):
 #        self.assertTrue(b["id"] == 905285)
 #
 #    def test_get_job_details(self):
+#        c = self.credentials()
+#        s = tls.Server(*c)
 #        e = s.get_job_details()
 #        b = e["body"]
+#
 #        self.assertTrue(e["status"] == 200)
 #        self.assertTrue(len(b["resultList"]) > 1)
-#        self.assertTrue(len(b["resultList"][0]["name"]) != None)
+#        self.assertTrue(b["resultList"][0]["name"] != None)
+#
+#    def test_get_time_entries(self):
+#        c = self.credentials()
+#        s = tls.Server(*c)
+#        y = dt.timedelta(days=1)
+#        sd = dt.date.today() - y - y
+#        sd = sd.strftime("%Y-%m-%d")
+#        ed = (dt.date.today() - y).strftime("%Y-%m-%d")
+#        te = s.get_time_entries(sd, ed, 39178)
+#        b = te["body"]
+#
+#        self.assertTrue(te["status"] == 200)
+#        self.assertTrue(len(b["resultList"]) > 1)
+#        self.assertTrue(b["resultList"][0]["minutes"] > 0)
 
-    def test_get_time_entries(self):
+    def test_get_job_task_allocations(self):
         c = self.credentials()
         s = tls.Server(*c)
-        y = dt.timedelta(days=1)
-        sd = dt.date.today() - y - y
-        sd = sd.strftime("%Y-%m-%d")
-        ed = (dt.date.today() - y).strftime("%Y-%m-%d")
-        te = s.get_time_entries(sd, ed, 39178)
-        b = te["body"]
+        e = s.get_job_task_allocations(39178)
+        b = e["body"]
 
-        self.assertTrue(te["status"] == 200)
+        self.assertTrue(e["status"] == 200)
         self.assertTrue(len(b["resultList"]) > 1)
-        self.assertTrue(b["resultList"][0]["minutes"] > 0)
+        self.assertTrue(b["resultList"][0]["taskDescription"] != None)
