@@ -41,6 +41,17 @@ class Server:
 
         return response
 
+    def _merge_into_template(template, merge_values):
+        """Merges a series of values into a pre-defined JSON document.
+           merge_values should be a dict of paths to values.
+
+           {"trafficEmployeeID": 23552,
+            "JobTask/id": 23242}
+
+           Returns a new data structure ready to be encoded as JSON."""
+        # TODO: Implement.
+        return {}
+
     def __wrap_response(self, response):
         """Wraps an API response in a data structure that's a little nicer to work with."""
         return {"status": response.status,
