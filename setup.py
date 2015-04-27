@@ -8,6 +8,7 @@ setup(name='trafficlive',
       author_email='info@bunts.io',
       license='MIT',
       packages=['trafficlive'],
+      include_package_data=True,
       test_suite='nose.collector',
       tests_require=['nose'],
       zip_safe=False)

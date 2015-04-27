@@ -9,7 +9,7 @@ import sys, os, json
 
 class TestServer(TestCase):
     def credentials(self):
-        data   = open(os.path.join("trafficlive", "tests", "data.json"), "r")
+        data = open(os.path.join(os.path.dirname(__file__), "data.json"), "r")
         parsed = json.load(data)
 
         data.close()
