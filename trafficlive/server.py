@@ -1,4 +1,5 @@
-import httplib, urllib, json, base64
+import httplib, urllib, json, base64, os
+from collections import deque
 
 class Server:
     """Wraps request/response."""
@@ -41,7 +42,7 @@ class Server:
 
         return response
 
-    def _merge_into_template(template, merge_values):
+    def _merge_into_template(self, template, merge_values):
         """Merges a series of values into a pre-defined JSON document.
            merge_values should be a dict of paths to values.
 
@@ -49,8 +50,24 @@ class Server:
             "JobTask/id": 23242}
 
            Returns a new data structure ready to be encoded as JSON."""
-        # TODO: Implement.
-        return {}
+        data = json.load(open(os.path.join(os.path.dirname(__file__), "templates", "%s.json" % template)))
+
+        for path, value in merge_values.iteritems():
+            self.__inner_set(data, deque(path.split("/")), value)
+
+        return data
+
+    def __inner_set(self, data, path, value):
+        """Recursively searches through 'data' using path until either the path is empty of a non-match is encountered.
+           If the final destination is found, the keys value is replaced with 'value'.
+           The change is made in-place and thus no vlaue is returned from this function."""
+        if len(path):
+            key = path.popleft()
+
+            if not len(path):
+                data[key] = value
+            else:
+                self.__inner_set(data[key], path, value)
 
     def __wrap_response(self, response):
         """Wraps an API response in a data structure that's a little nicer to work with."""

@@ -107,21 +107,14 @@ class TestServer(TestCase):
         c = self.credentials()
         s = tl.TrafficLive(*self.init_for(c))
         td = dt.timedelta(minutes=120)
-        st = td.datetime.now() - td
-        te = s.add_time_entry(employee_id=c["employee_id"],
-               start_time=st,
-               comment="This is a test",
-               job_id=111,
-               job_task_id=111,
-               billable=False,
-               minutes=120)
+        st = dt.datetime.now() - td
         te = s.add_time_entry({"trafficEmployeeId": c["employee_id"],
                "startTime": st,
                "comment": "This is a test",
                "jobId/id": 111,
                "jobTaskId/id": 111,
                "billable": False,
-               "minutes": 120)
+               "minutes": 120})
 
         b = te["body"]
 

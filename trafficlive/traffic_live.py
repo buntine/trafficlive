@@ -34,12 +34,12 @@ class TrafficLive(tls.Server):
 
         return self._request(path="timeentries", query=query)
 
-    #def add_time_entry(employee_id=None, start_time=None, comment="", job_id=None, job_task_id=None, billable=False, minutes=0):
-    def add_time_entry(merge_values={})
+    def add_time_entry(self, merge_values={}):
         headers = {"Content-Type": "application/json"}
         body    = self._merge_into_template("time_entry", merge_values)
-
-        return self._request(path="timeentries", method="PUT", body=body, headers=headers)
+        print body
+        return 1
+        #return self._request(path="timeentries", method="PUT", body=body, headers=headers)
 
     def get_job_task_allocations(self, employee_id, page=1):
         path = "staff/employee/%s/jobtaskallocations" % (str(employee_id))
