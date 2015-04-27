@@ -103,23 +103,31 @@ class TestServer(TestCase):
 #        self.assertTrue(len(b["resultList"]) > 1)
 #        self.assertTrue(b["resultList"][0]["minutes"] > 0)
 #
-#    def test_add_time_entry(self):
-#        c = self.credentials()
-#        s = tl.TrafficLive(*self.init_for(c))
-#        td = dt.timedelta(minutes=120)
-#        st = td.datetime.now() - td
-#        te = s.add_time_entry(employee_id=c["employee_id"],
-#               start_time=st,
-#               comment="This is a test",
-#               job_id=111,
-#               job_task_id=111,
-#               billable=False,
-#               minutes=120)
-#        b = te["body"]
-#
-#        self.assertTrue(te["status"] == 200)
-#        self.assertTrue(b["resultList"][0]["minutes"] == 120)
-#
+    def test_add_time_entry(self):
+        c = self.credentials()
+        s = tl.TrafficLive(*self.init_for(c))
+        td = dt.timedelta(minutes=120)
+        st = td.datetime.now() - td
+        te = s.add_time_entry(employee_id=c["employee_id"],
+               start_time=st,
+               comment="This is a test",
+               job_id=111,
+               job_task_id=111,
+               billable=False,
+               minutes=120)
+        te = s.add_time_entry({"trafficEmployeeId": c["employee_id"],
+               "startTime": st,
+               "comment": "This is a test",
+               "jobId/id": 111,
+               "jobTaskId/id": 111,
+               "billable": False,
+               "minutes": 120)
+
+        b = te["body"]
+
+        self.assertTrue(te["status"] == 200)
+        self.assertTrue(b["resultList"][0]["minutes"] == 120)
+
 #    def test_get_job_task_allocations(self):
 #        c = self.credentials()
 #        s = tl.TrafficLive(*self.init_for(c))

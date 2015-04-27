@@ -1,0 +1,55 @@
+{
+   "jobId":{
+      "id":25
+   },
+   "allocationGroupId":{
+      "id":1
+   },
+   "jobStageDescription":null,
+   "timeEntryCost":{
+      "currencyType":"GBP",
+      "amountString":80
+   },
+   "timeEntryPersonalRate":{
+      "currencyType":"GBP",
+      "amountString":0
+   },
+   "valueOfTimeEntry":{
+      "currencyType":"GBP",
+      "amountString":0
+   },
+   "exported":false,
+   "secondaryExternalCode":null,
+   "lockedByApproval":false,
+   "endTime":"2014-10-06T16:09:17.396+0000",
+   "workPoints":null,
+   "billable":false,
+   "version":"-1",
+   "startTime":"2014-10-06T14:09:17.396+0000",
+   "id":"-1",
+   "jobTaskId":{
+      "id":509
+   },
+   "trafficEmployeeId":{
+      "id":12
+   },
+   "rejected":false,
+   "externalCode":null,
+   "taskDescription":"Michal Bachman - Task",
+   "chargeBandId":{
+      "id":6
+   },
+   "minutes":120,
+   "lockedByApprovalEmployeeId":null,
+   "exportError":null,
+   "rejectedComment":null,
+   "submitted":false,
+   "taskRate":{
+      "currencyType":"GBP",
+      "amountString":54
+   },
+   "taskComplete":false,
+   "dateCreated":"2014-10-17T16:09:17.411+0000",
+   "lockedByApprovalDate":null,
+   "comment":"NEW Comment 0.0433672896225773"
+}
