@@ -1,4 +1,5 @@
 import datetime as dt
+import json
 import trafficlive.server as tls
 
 class TrafficLive(tls.Server):
@@ -37,13 +38,14 @@ class TrafficLive(tls.Server):
 
     def add_time_entry(self, merge_values={}):
         headers     = {"Content-Type": "application/json"}
-        full_values = {"dateCreated": dt.datetime.now().isoformat()}
+        full_values = {"dateCreated": dt.datetime.utcnow().isoformat() + "Z"}
 
         full_values.update(merge_values)
 
-        body = self._merge_into_template("time_entry", merge_values)
+        body = self._merge_into_template("time_entry", full_values)
+        print json.dumps(body)
 
-        return self._request(path="timeentries", method="PUT", body=body, headers=headers)
+        return self._request(path="timeentries", method="PUT", body=json.dumps(body), headers=headers)
 
     def get_job_task_allocations(self, employee_id, page=1):
         path = "staff/employee/%s/jobtaskallocations" % (str(employee_id))

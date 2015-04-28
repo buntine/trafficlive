@@ -25,31 +25,31 @@ class TestServer(TestCase):
         self.assertTrue(s.token == "abcd1234")
         self.assertTrue(s.page_size == 2)
 
-    def test_wrong_credentials(self):
-        s = tl.TrafficLive("bunts@bunts.com", "abcd1234")
-
-        with self.assertRaises(RuntimeError):
-            s.get_employees()
-
-    def test_get_employees(self):
-        c = self.credentials()
-        s = tl.TrafficLive(*self.init_for(c))
-        e = s.get_employees()
-        b = e["body"]
-
-        self.assertTrue(e["status"] == 200)
-        self.assertTrue(len(b["resultList"]) > 1)
-        self.assertTrue(b["resultList"][0]["userName"] != None)
-
-    def test_get_employee(self):
-        c = self.credentials()
-        s = tl.TrafficLive(*self.init_for(c))
-        e = s.get_employee(c["employee_id"])
-        b = e["body"]
-
-        self.assertTrue(e["status"] == 200)
-        self.assertTrue(b["id"] == c["employee_id"])
-
+#    def test_wrong_credentials(self):
+#        s = tl.TrafficLive("bunts@bunts.com", "abcd1234")
+#
+#        with self.assertRaises(RuntimeError):
+#            s.get_employees()
+#
+#    def test_get_employees(self):
+#        c = self.credentials()
+#        s = tl.TrafficLive(*self.init_for(c))
+#        e = s.get_employees()
+#        b = e["body"]
+#
+#        self.assertTrue(e["status"] == 200)
+#        self.assertTrue(len(b["resultList"]) > 1)
+#        self.assertTrue(b["resultList"][0]["userName"] != None)
+#
+#    def test_get_employee(self):
+#        c = self.credentials()
+#        s = tl.TrafficLive(*self.init_for(c))
+#        e = s.get_employee(c["employee_id"])
+#        b = e["body"]
+#
+#        self.assertTrue(e["status"] == 200)
+#        self.assertTrue(b["id"] == c["employee_id"])
+#
 #    def test_get_clients(self):
 #        c = self.credentials()
 #        s = tl.TrafficLive(*self.init_for(c))
@@ -89,39 +89,42 @@ class TestServer(TestCase):
 #        self.assertTrue(len(b["resultList"]) > 1)
 #        self.assertTrue(b["resultList"][0]["name"] != None)
 #
-    def test_get_time_entries(self):
-        c = self.credentials()
-        s = tl.TrafficLive(*self.init_for(c))
-        y = dt.timedelta(days=1)
-        sd = (dt.date.today() - y - y).strftime("%Y-%m-%d")
-        ed = (dt.date.today()).strftime("%Y-%m-%d")
-        te = s.get_time_entries(sd, ed, c["employee_id"])
-        b = te["body"]
-
-        self.assertTrue(te["status"] == 200)
-        self.assertTrue(len(b["resultList"]) > 1)
-        self.assertTrue(b["resultList"][0]["minutes"] > 0)
-
-#    def test_add_time_entry(self):
+#    def test_get_time_entries(self):
 #        c = self.credentials()
 #        s = tl.TrafficLive(*self.init_for(c))
-#        td = dt.timedelta(minutes=120)
-#        st = dt.datetime.now() - td
-#        et = dt.datetime.now()
-#        te = s.add_time_entry({"trafficEmployeeId": c["employee_id"],
-#               "startTime": st.isoformat(),
-#               "endTime": et.isoformat(),
-#               "comment": "This is a test",
-#               "jobId/id": 111,
-#               "jobTaskId/id": 111,
-#               "billable": False,
-#               "minutes": 120})
-#
+#        y = dt.timedelta(days=1)
+#        sd = (dt.date.today() - y - y).strftime("%Y-%m-%d")
+#        ed = (dt.date.today()).strftime("%Y-%m-%d")
+#        te = s.get_time_entries(sd, ed, c["employee_id"])
 #        b = te["body"]
 #
 #        self.assertTrue(te["status"] == 200)
-#        self.assertTrue(b["minutes"] == 120)
-#
+#        self.assertTrue(len(b["resultList"]) > 1)
+#        self.assertTrue(b["resultList"][0]["minutes"] > 0)
+
+    def test_add_time_entry(self):
+        c = self.credentials()
+        s = tl.TrafficLive(*self.init_for(c))
+        td = dt.timedelta(minutes=120)
+        st = dt.datetime.utcnow() - td
+        et = dt.datetime.utcnow()
+        te = s.add_time_entry({"trafficEmployeeId": c["employee_id"],
+               "startTime": st.isoformat() + "Z",
+               "endTime": et.isoformat() + "Z",
+               "comment": "This is a test",
+               "jobId/id": c["job_id"],
+               "jobTaskId/id": c["job_task_id"],
+               "allocationGroupId/id": 2088410,
+               "chargeBandId/id": 45777,
+               "taskDescription": "Programming",
+               "billable": False,
+               "minutes": 120})
+
+        b = te["body"]
+
+        self.assertTrue(te["status"] == 200)
+        self.assertTrue(b["minutes"] == 120)
+
 #    def test_get_job_task_allocations(self):
 #        c = self.credentials()
 #        s = tl.TrafficLive(*self.init_for(c))

@@ -7,22 +7,22 @@
    },
    "jobStageDescription":null,
    "timeEntryCost":{
-      "currencyType":"GBP",
-      "amountString":0
+      "currencyType":"AUD",
+      "amountString":1
    },
    "timeEntryPersonalRate":{
-      "currencyType":"GBP",
-      "amountString":0
+      "currencyType":"AUD",
+      "amountString":1
    },
    "valueOfTimeEntry":{
-      "currencyType":"GBP",
-      "amountString":0
+      "currencyType":"AUD",
+      "amountString":1
    },
    "exported":false,
    "secondaryExternalCode":null,
    "lockedByApproval":false,
    "endTime":"2014-10-06T16:09:17.396+0000",
-   "workPoints":null,
+   "workPoints":0,
    "billable":false,
    "version":"-1",
    "startTime":"2014-10-06T14:09:17.396+0000",
@@ -45,7 +45,7 @@
    "rejectedComment":null,
    "submitted":false,
    "taskRate":{
-      "currencyType":"GBP",
+      "currencyType":"AUD",
       "amountString":1
    },
    "taskComplete":false,
