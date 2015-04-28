@@ -108,9 +108,9 @@ class TestServer(TestCase):
         td = dt.timedelta(minutes=120)
         st = dt.datetime.utcnow() - td
         et = dt.datetime.utcnow()
-        te = s.add_time_entry({"trafficEmployeeId": c["employee_id"],
-               "startTime": st.isoformat() + "Z",
-               "endTime": et.isoformat() + "Z",
+        te = s.add_time_entry({"trafficEmployeeId/id": c["employee_id"],
+               "startTime": st.isoformat(),
+               "endTime": et.isoformat(),
                "comment": "This is a test",
                "jobId/id": c["job_id"],
                "jobTaskId/id": c["job_task_id"],

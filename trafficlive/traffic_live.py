@@ -38,12 +38,11 @@ class TrafficLive(tls.Server):
 
     def add_time_entry(self, merge_values={}):
         headers     = {"Content-Type": "application/json"}
-        full_values = {"dateCreated": dt.datetime.utcnow().isoformat() + "Z"}
+        full_values = {"dateCreated": dt.datetime.utcnow().isoformat()}
 
         full_values.update(merge_values)
 
         body = self._merge_into_template("time_entry", full_values)
-        print json.dumps(body)
 
         return self._request(path="timeentries", method="PUT", body=json.dumps(body), headers=headers)
 

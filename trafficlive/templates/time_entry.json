@@ -1,55 +1,57 @@
 {
-   "jobId":{
-      "id":0
-   },
-   "allocationGroupId":{
-      "id":1
-   },
-   "jobStageDescription":null,
-   "timeEntryCost":{
-      "currencyType":"AUD",
-      "amountString":1
-   },
-   "timeEntryPersonalRate":{
-      "currencyType":"AUD",
-      "amountString":1
-   },
-   "valueOfTimeEntry":{
-      "currencyType":"AUD",
-      "amountString":1
-   },
-   "exported":false,
-   "secondaryExternalCode":null,
-   "lockedByApproval":false,
-   "endTime":"2014-10-06T16:09:17.396+0000",
-   "workPoints":0,
-   "billable":false,
-   "version":"-1",
-   "startTime":"2014-10-06T14:09:17.396+0000",
-   "id":"-1",
-   "jobTaskId":{
-      "id":0
-   },
-   "trafficEmployeeId":{
-      "id":0
-   },
-   "rejected":false,
-   "externalCode":null,
-   "taskDescription":"",
-   "chargeBandId":{
-      "id":6
-   },
-   "minutes":120,
-   "lockedByApprovalEmployeeId":null,
-   "exportError":null,
-   "rejectedComment":null,
-   "submitted":false,
-   "taskRate":{
-      "currencyType":"AUD",
-      "amountString":1
-   },
-   "taskComplete":false,
-   "dateCreated":"2014-10-17T16:09:17.411+0000",
-   "lockedByApprovalDate":null,
-   "comment":""
+      "@class": "com.sohnar.trafficlite.transfer.scheduling.JobTaskTimeEntryTO",
+      "id": 13918901,
+      "version": 0,
+      "dateCreated": "2015-04-27T08:12:00.575+0000",
+      "dateModified": null,
+      "jobTaskId":  {
+        "id": 4677755
+      },
+      "billable": true,
+      "exported": false,
+      "lockedByApproval": false,
+      "comment": "Small meeting with Erik, helped with understanding complexities",
+      "endTime": "2015-04-27T00:30:00.000+0000",
+      "minutes": 90,
+      "trafficEmployeeId":  {
+        "id": 39178
+      },
+      "taskDescription": "Programming",
+      "taskComplete": false,
+      "taskRate":  {
+        "amountString": 170,
+        "currencyType": "AUD"
+      },
+      "valueOfTimeEntry":  {
+        "amountString": 255,
+        "currencyType": "AUD"
+      },
+      "jobId":  {
+        "id": 900298
+      },
+      "allocationGroupId":  {
+        "id": 2088410
+      },
+      "chargeBandId":  {
+        "id": 45777
+      },
+      "timeEntryCost":  {
+        "amountString": 0,
+        "currencyType": "AUD"
+      },
+      "timeEntryPersonalRate":  {
+        "amountString": 255,
+        "currencyType": "AUD"
+      },
+      "jobStageDescription": null,
+      "lockedByApprovalEmployeeId": null,
+      "lockedByApprovalDate": null,
+      "exportError": null,
+      "workPoints": 0,
+      "externalCode": null,
+      "secondaryExternalCode": null,
+      "submitted": false,
+      "rejected": false,
+      "rejectedComment": null,
+      "startTime": "2015-04-26T23:00:00.000+0000"
 }

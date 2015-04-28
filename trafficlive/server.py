@@ -26,6 +26,10 @@ class Server:
 
         full_query.update(query)
         full_headers.update(headers)
+
+        if len(body) > 0:
+            full_headers["Content-Length"] = len(body)
+
         full_path += "?%s" % (urllib.urlencode(full_query))
 
         conn.request(method, full_path, body, full_headers)
