@@ -108,8 +108,10 @@ class TestServer(TestCase):
         s = tl.TrafficLive(*self.init_for(c))
         td = dt.timedelta(minutes=120)
         st = dt.datetime.now() - td
+        et = dt.datetime.now()
         te = s.add_time_entry({"trafficEmployeeId": c["employee_id"],
-               "startTime": st,
+               "startTime": st.isoformat(),
+               "endTime": et.isoformat(),
                "comment": "This is a test",
                "jobId/id": 111,
                "jobTaskId/id": 111,
@@ -119,7 +121,7 @@ class TestServer(TestCase):
         b = te["body"]
 
         self.assertTrue(te["status"] == 200)
-        self.assertTrue(b["resultList"][0]["minutes"] == 120)
+        self.assertTrue(b["minutes"] == 120)
 
 #    def test_get_job_task_allocations(self):
 #        c = self.credentials()
