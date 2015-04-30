@@ -8,6 +8,13 @@ This is currently in pre-alpha. I have some of the basic endpoints wrapped.
 Adding new functions should be really easy, so please send me a pull request.
 
 
+### Installation
+
+Clone the repo and:
+
+    $ python setup.py install
+
+
 ### Usage
 
 See the tests for examples. But, effectively:
