@@ -1,46 +1,45 @@
 {
       "@class": "com.sohnar.trafficlite.transfer.scheduling.JobTaskTimeEntryTO",
-      "id": 13918901,
+      "id": 1,
       "version": 0,
-      "dateCreated": "2015-04-27T08:12:00.575+0000",
       "dateModified": null,
       "jobTaskId":  {
-        "id": 4677755
+        "id": 1
       },
       "billable": true,
       "exported": false,
       "lockedByApproval": false,
-      "comment": "Small meeting with Erik, helped with understanding complexities",
+      "comment": "",
       "endTime": "2015-04-27T00:30:00.000+0000",
-      "minutes": 90,
+      "minutes": 1,
       "trafficEmployeeId":  {
-        "id": 39178
+        "id": 1
       },
       "taskDescription": "Programming",
       "taskComplete": false,
       "taskRate":  {
-        "amountString": 170,
+        "amountString": 1,
         "currencyType": "AUD"
       },
       "valueOfTimeEntry":  {
-        "amountString": 255,
+        "amountString": 1,
         "currencyType": "AUD"
       },
       "jobId":  {
-        "id": 900298
+        "id": 1
       },
       "allocationGroupId":  {
-        "id": 2088410
+        "id": 1
       },
       "chargeBandId":  {
-        "id": 45777
+        "id": 1
       },
       "timeEntryCost":  {
         "amountString": 0,
         "currencyType": "AUD"
       },
       "timeEntryPersonalRate":  {
-        "amountString": 255,
+        "amountString": 1,
         "currencyType": "AUD"
       },
       "jobStageDescription": null,
