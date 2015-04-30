@@ -12,9 +12,9 @@ Adding new functions should be really easy, so please send me a pull request.
 
 See the tests for examples. But, effectively:
 
-    import trafficlive.trafficlive as tl
+    from trafficlive.traffic_live import TrafficLive
 
-    server = tl.TrafficLive("email@address", "api-token")
+    server = TrafficLive("email@address", "api-token")
     employess = server.get_employees()
 
 All functions will return a data structure as per the [TrafficLive documentation](http://46.18.86.57/_documentation/api/).
