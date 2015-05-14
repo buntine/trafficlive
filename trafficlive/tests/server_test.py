@@ -92,7 +92,7 @@ class TestServer(TestCase):
     def test_get_charge_band(self):
         c = self.credentials()
         s = tl.TrafficLive(*self.init_for(c))
-        e = s.get_charge_bands(c["charge_band_id"])
+        e = s.get_charge_band(c["charge_band_id"])
         b = e["body"]
 
         self.assertTrue(e["status"] == 200)
