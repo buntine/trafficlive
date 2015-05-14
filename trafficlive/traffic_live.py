@@ -26,6 +26,12 @@ class TrafficLive(tls.Server):
     def get_job_detail(self, jdid):
         return self._request(path="jobdetail/%d" % (jdid))
 
+    def get_charge_bands(self, page=1):
+        return self._request(path="chargeband", query={"currentPage": page})
+
+    def get_charge_band(self, cbid):
+        return self._request(path="chargeband/%d" % (cbid))
+
     def get_time_entries(self, start_date, end_date, employee_id=None):
         query = {
           "startDate": start_date,

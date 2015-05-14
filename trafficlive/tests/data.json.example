@@ -2,4 +2,5 @@
  "token": "someapikey",
  "employee_id": 1111,
  "job_id": 2222,
+ "charge_band_id": 1,
  "page_size": 2}

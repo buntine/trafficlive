@@ -79,6 +79,25 @@ class TestServer(TestCase):
         self.assertTrue(e["status"] == 200)
         self.assertTrue(b["id"] == c["job_id"])
 
+    def test_get_charge_bands(self):
+        c = self.credentials()
+        s = tl.TrafficLive(*self.init_for(c))
+        e = s.get_charge_bands()
+        b = e["body"]
+
+        self.assertTrue(e["status"] == 200)
+        self.assertTrue(len(b["resultList"]) > 1)
+        self.assertTrue(b["resultList"][0]["name"] != None)
+
+    def test_get_charge_band(self):
+        c = self.credentials()
+        s = tl.TrafficLive(*self.init_for(c))
+        e = s.get_charge_bands(c["charge_band_id"])
+        b = e["body"]
+
+        self.assertTrue(e["status"] == 200)
+        self.assertTrue(b["id"] == c["charge_band_id"])
+
     def test_get_job_details(self):
         c = self.credentials()
         s = tl.TrafficLive(*self.init_for(c))
